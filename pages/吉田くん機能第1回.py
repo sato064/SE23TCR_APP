@@ -81,31 +81,3 @@ st.subheader('指摘数の割合')
 st.pyplot(plt, transparent=True) # グラフ表示
 st.subheader('振り返り')
 
-f = open('files/srs_1_yoshi.txt', 'r')
-data = f.read()
-if data == "T":
-    sub = True
-else:
-    sub = False
-f.close()
-
-if not sub:
-    with st.form("my_form", clear_on_submit=False):
-        review = st.text_area('今回のインスペクションを振り返ってメモ等あればご記入ください')
-        submitted = st.form_submit_button("記録")
-
-    if submitted:
-        f = open('files/srs_1_yoshi.txt', 'w')
-        f.write('T')
-        f.close()
-        f = open('files/srs_1_com_yoshi.txt', 'w')
-        f.write(review)
-        f.close()
-        st.success('保存しました')
-        st.text(review)
-
-else:
-    f = open('files/srs_1_com_yoshi.txt', 'r')
-    data = f.read()
-    st.text(data)
-    f.close()
